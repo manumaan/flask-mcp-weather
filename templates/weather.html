@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Result</title>
+    <title>Weather Report</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,24 +16,51 @@
             background-color: #f0f0f0;
         }
         .container {
-            text-align: center;
+            text-align: left;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            line-height: 1.6;
         }
-        .response {
-            font-size: 1.2em;
-            color: #333;
-            margin-top: 20px;
+        h1 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .summary {
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Weather Information</h1>
-        <div class="response">
-            {{ response }}
+        <h1>Weather Report</h1>
+        <div class="section">
+            <strong>Here's the weather report for {{ city }}:</strong>
+        </div>
+        <div class="section">
+            <strong>Current Weather</strong>
+            <ul>
+                <li>Condition: {{ response.current_condition.condition }}</li>
+                <li>Temperature: {{ response.current_condition.temperature }}°C (Feels like {{ response.current_condition.feels_like }}°C)</li>
+                <li>Wind Speed: {{ response.current_condition.wind_speed }} km/h</li>
+                <li>Precipitation: {{ response.current_condition.precipitation }} mm</li>
+            </ul>
+        </div>
+        <div class="section">
+            <strong>Forecast</strong>
+            <ul>
+                <li>Morning: {{ response.forecast.morning.condition }} near +{{ response.forecast.morning.temperature }}°C (Feels like +{{ response.forecast.morning.feels_like }}°C)</li>
+                <li>Noon: {{ response.forecast.noon.condition }} near +{{ response.forecast.noon.temperature }}°C (Feels like +{{ response.forecast.noon.feels_like }}°C)</li>
+                <li>Evening: {{ response.forecast.evening.condition }} near +{{ response.forecast.evening.temperature }}°C (Feels like +{{ response.forecast.evening.feels_like }}°C)</li>
+                <li>Night: {{ response.forecast.night.condition }} near +{{ response.forecast.night.temperature }}°C (Feels like +{{ response.forecast.night.feels_like }}°C)</li>
+            </ul>
+        </div>
+        <div class="section summary">
+            Summary: {{ response.summary }}
         </div>
         <button onclick="window.location.href='/'">Go Back to Home</button>
     </div>
