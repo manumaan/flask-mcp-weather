@@ -1,6 +1,6 @@
 Testing MCP Server
 Test push
-'''
+```
 version: 1
 frontend:
   phases:
@@ -17,4 +17,4 @@ frontend:
   cache:
     paths:
       - '**/*'
-'''
+```
